@@ -1,6 +1,6 @@
 # Skill: log
 
-向 `state/logs/` 追加执行记录。
+向 `.agent/_state/logs/` 追加执行记录。
 
 ---
 
@@ -13,7 +13,7 @@
 ## 文件结构
 
 ```
-state/logs/
+.agent/_state/logs/
 └── development-log.md    ← 单文件，所有日志追加到此
 ```
 
@@ -44,9 +44,9 @@ state/logs/
 ```
 [14:30] init 创建项目状态目录结构
 
-创建 state/logs/、state/wiki/ 目录，写入 _schema.md。
+创建 .agent/_state/logs/、.agent/_state/wiki/ 目录，写入 _schema.md。
 
-结果：state/ 结构初始化完成
+结果：.agent/_state/ 结构初始化完成
 ```
 
 ```
@@ -61,7 +61,7 @@ state/logs/
 
 ## 追加规则
 
-1. 在 `state/logs/development-log.md` 末尾追加新日志
+1. 在 `.agent/_state/logs/development-log.md` 末尾追加新日志
    - 文件不存在 → 创建文件，写入第一条日志
    - 文件已存在 → 在末尾追加
 2. 每条日志之间空一行
@@ -76,4 +76,4 @@ state/logs/
 
 ## 依赖
 
-`init` — 依赖 `state/logs/` 目录已存在。
+`init` — 依赖 `.agent/_state/logs/` 目录已存在。

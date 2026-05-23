@@ -1,7 +1,7 @@
 # AGENTS.md v2.0 开发文档
 
 > 本文档记录 v2.0 协议的设计背景、架构决策与实现思考。
-> 协议文件本体请见 `AGENTS-v2.0.md`，各 skill 实现请见 `skills/`。
+> 协议文件本体请见 `AGENTS-v2.0.md`，各 skill 实现请见 `.agent/skills/`。
 
 ---
 
@@ -36,9 +36,9 @@ AGENTS.md v2.0（协议本体，~60 行）
   │     ├── log/        ← 写日志
   │     └── wiki/       ← 维护知识
   │
-  └── 定义 state 结构
-        ├── logs/  ← 执行历史（不可变）
-        └── wiki/  ← 项目认知（结构化）
+state/ → 实际路径为 `.agent/_state/`（下划线前缀避撞，点目录隐式隔离）
+├── logs/     ← 执行历史（客观、不可变）
+└── wiki/     ← 项目认知（结构化、稳定）
 ```
 
 ### 入口流程
@@ -73,7 +73,7 @@ Agent 进入项目
 
 **职责**：判断项目状态，决定下一步操作。
 
-- 检查 `state/` 是否存在、是否有模板文件、是否有日志
+- 检查 `.agent/_state/` 是否存在、是否有模板文件、是否有日志
 - 若未初始化 → 调 init skill
 - 若已初始化 → 加载 wiki + logs，恢复 Agent 认知
 - rehydrate 不执行任何写操作，只做判断和加载
@@ -82,14 +82,14 @@ Agent 进入项目
 
 **职责**：将空白项目转化为可工作的状态驱动项目。
 
-- 创建 `state/logs/`、`state/wiki/`
-- 从 `skills/init/templates/` 复制模板文件
+- 创建 `.agent/_state/logs/`、`.agent/_state/wiki/`
+- 从 `.agent/skills/init/templates/` 复制模板文件
 - 阅读项目 `README.md`、代码结构 → 生成初版 wiki（首次知识沉淀）
 - 写第一条日志
 
 ### 3.3 log（日志）
 
-**职责**：向 `state/logs/development-log.md` 追加执行记录。
+**职责**：向 `.agent/_state/logs/development-log.md` 追加执行记录。
 
 - 单文件追加模式，不支持修改已有记录（不可变性）
 - 格式：`[YYYY-MM-DD HH:mm] action description`
@@ -97,7 +97,7 @@ Agent 进入项目
 
 ### 3.4 wiki（知识维护）
 
-**职责**：维护 `state/wiki/` 中的结构化项目知识。
+**职责**：维护 `.agent/_state/wiki/` 中的结构化项目知识。
 
 - 支持新增、修改、更正
 - 写入条件：已验证、可复用的信息
@@ -152,8 +152,8 @@ log 和 wiki skill 只定义**怎么做**（格式、追加规则、文件结构
 - ✅ 入口分流流程
 
 ### 未包含（推迟到 v3.0 或按需引入）
-- ⏳ `state/tasks/` — 任务管理系统
-- ⏳ `state/memory/` — 稳定事实库（严格验证机制）
+- ⏳ `.agent/_state/tasks/` — 任务管理系统
+- ⏳ `.agent/_state/memory/` — 稳定事实库（严格验证机制）
 - ⏳ 多 Agent 协同场景
 - ⏳ 日志自动分页/归档
 - ⏳ wiki 全文索引

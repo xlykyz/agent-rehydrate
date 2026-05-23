@@ -25,16 +25,16 @@ AGENTS.md 是协议本体（~120 行），定义行为契约。操作细节封�
 ```
 AGENTS.md（协议本体）
   │
-  ├── 技能引导（首次自动克隆 skills/）
+  ├── 技能引导（首次自动克隆 .agent/skills/）
   ├── 入口流程（rehydrate → init / 开工）
   ├── 运行时约定（何时调 log / wiki）
   └── 一致性约束
                
-skills/（操作定义）
+.agent/skills/（操作定义）
   ├── rehydrate/  ← 入口：检查初始化 → 加载认知 → 分流
   ├── init/       ← 建目录 → 复制模板 → 建初版 wiki → 写日志
   ├── log/        ← 向 development-log.md 追加执行记录
-  └── wiki/       ← 维护 state/wiki/ 中的项目知识
+  └── wiki/       ← 维护 .agent/_state/wiki/ 中的项目知识
 ```
 
 ### 工作流程
@@ -42,12 +42,12 @@ skills/（操作定义）
 ```
 Agent 进入项目
      │
-     ├── skills/ 不存在？→ 从 GitHub 自动克隆
+     ├── .agent/skills/ 不存在？→ 从 GitHub 自动克隆
      │
      ▼
   加载 rehydrate skill
      │
-     ├── 未初始化 → init（建 state/ + 写 wiki + 日志）
+     ├── 未初始化 → init（建 .agent/_state/ + 写 wiki + 日志）
      │
      └── 已初始化 → 加载 wiki + logs → 恢复认知
                            │
@@ -67,16 +67,16 @@ Agent 进入项目
 project-root/
 ├── AGENTS.md           # 协议本体（复制即用）
 ├── README.md
-├── skills/             # 操作定义（首次自动克隆）
-│   ├── rehydrate/
-│   ├── init/
-│   ├── log/
-│   └── wiki/
-
-└── state/              # 唯一事实来源
-    ├── _schema.md      # 状态目录结构与格式规范
-    ├── logs/           # 执行历史（客观、不可变）
-    └── wiki/           # 项目认知（结构化、稳定）
+└── .agent/             # agent 专属目录
+    ├── skills/         # 操作定义（首次自动克隆）
+    │   ├── rehydrate/
+    │   ├── init/
+    │   ├── log/
+    │   └── wiki/
+    └── _state/         # 唯一事实来源
+        ├── _schema.md  # 状态目录结构与格式规范
+        ├── logs/       # 执行历史（客观、不可变）
+        └── wiki/       # 项目认知（结构化、稳定）
 ```
 
 ---
@@ -89,7 +89,7 @@ project-root/
 | 操作逻辑 | 写在 AGENTS.md 里 | 封装为独立 skill |
 | state 结构 | logs / tasks / memory / wiki | logs + wiki（仅客观层） |
 | 入口流程 | 直接开始执行 | rehydrate 检查 → 分流 |
-| 使用方式 | 复制一个文件 | 复制 AGENTS.md → 自动拉 skills/ |
+| 使用方式 | 复制一个文件 | 复制 AGENTS.md → 自动拉 .agent/skills/ |
 
 ---
 
@@ -110,9 +110,9 @@ AI 工具对应的文件名：
 | Cursor | `.cursor/rules/core.mdc` |
 | Trae | `user_rules.md`（全局规则）或设置 → 规则 |
 
-首次进入时，Agent 会自动检测 `skills/` 是否存在：
+首次进入时，Agent 会自动检测 `.agent/skills/` 是否存在：
 - **有网** → 自动从 `github.com/xlykyz/agent-rehydrate` 克隆
-- **无网** → 显示提示信息，手动复制 `skills/` 目录即可
+- **无网** → 显示提示信息，手动复制 `.agent/skills/` 目录即可
 
 ---
 

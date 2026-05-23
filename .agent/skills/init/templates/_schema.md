@@ -7,7 +7,7 @@
 ## 目录结构
 
 ```
-state/
+.agent/_state/
 ├── _schema.md    ← 本文档
 ├── logs/         ← 执行历史
 └── wiki/         ← 项目知识

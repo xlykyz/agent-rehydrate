@@ -1,6 +1,6 @@
 # Skill: wiki
 
-管理 `state/wiki/` 中的项目知识沉淀。
+管理 `.agent/_state/wiki/` 中的项目知识沉淀。
 
 ---
 
@@ -13,7 +13,7 @@ wiki 沉淀两类知识：1）项目本身（架构、模块、约定）；2）�
 ## 文件结构
 
 ```
-state/wiki/
+.agent/_state/wiki/
 ├── _index.md              ← 目录索引（必须）
 ├── project-architecture.md
 ├── data-pipeline.md

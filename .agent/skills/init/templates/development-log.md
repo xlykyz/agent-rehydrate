@@ -9,9 +9,9 @@
 
 [2026-01-15 10:30] init 初始化项目状态目录结构
 
-创建 state/logs/、state/wiki/ 目录，写入模板文件。
+创建 .agent/_state/logs/、.agent/_state/wiki/ 目录，写入模板文件。
 
-结果：state/ 结构初始化完成
+结果：.agent/_state/ 结构初始化完成
 
 ---
 

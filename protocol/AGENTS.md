@@ -12,7 +12,7 @@
 本项目是**状态驱动**的。仓库（repo）是唯一可信的现实来源，所有认知从文件结构中恢复，不依赖模型的隐式记忆。
 
 ```
-state/
+.agent/_state/
 ├── logs/     ← 执行历史（客观、不可变）
 └── wiki/     ← 项目认知（结构化、稳定）
 ```
@@ -35,23 +35,23 @@ state/
 
 | Skill | 职责 | 路径 |
 |-------|------|------|
-| rehydrate | 入口：检查初始化 → 加载认知 → 分流 | `skills/rehydrate/SKILL.md` |
-| init | 创建目录 → 复制模板 → 建初版 wiki → 写日志 | `skills/init/SKILL.md` |
-| log | 向 development-log.md 追加执行记录 | `skills/log/SKILL.md` |
-| wiki | 维护 state/wiki/ 中的项目知识 | `skills/wiki/SKILL.md` |
+| rehydrate | 入口：检查初始化 → 加载认知 → 分流 | `.agent/skills/rehydrate/SKILL.md` |
+| init | 创建目录 → 复制模板 → 建初版 wiki → 写日志 | `.agent/skills/init/SKILL.md` |
+| log | 向 development-log.md 追加执行记录 | `.agent/skills/log/SKILL.md` |
+| wiki | 维护 .agent/_state/wiki/ 中的项目知识 | `.agent/skills/wiki/SKILL.md` |
 
 ---
 
 ## 首次使用：技能引导
 
-如果项目根目录下 `skills/` **不存在**，说明此项目尚未具备技能体系。按以下步骤加载：
+如果项目根目录下 `.agent/skills/` **不存在**，说明此项目尚未具备技能体系。按以下步骤加载：
 
-1. **从仓库拉取技能**：`git clone --depth 1 https://github.com/xlykyz/agent-rehydrate.git .agent-tmp && cp -r .agent-tmp/skills/ ./ && rm -rf .agent-tmp`
-2. **验证结果**：确认 `skills/` 存在且包含四个 skill 目录
+1. **从仓库拉取技能**：`git clone --depth 1 https://github.com/xlykyz/agent-rehydrate.git .agent-tmp && mkdir -p .agent && cp -r .agent-tmp/.agent/skills/ .agent/ && rm -rf .agent-tmp`
+2. **验证结果**：确认 `.agent/skills/` 存在且包含四个 skill 目录
 3. **拉取失败**（网络不通等）：输出以下提示并停止
 
 > **⚠️ Skill 加载失败**
-> 本协议需要 skill 体系才能运作。请手动将以下仓库中的 `skills/` 目录复制到项目根目录：
+> 本协议需要 skill 体系才能运作。请手动从以下仓库中将 `.agent/skills/` 目录复制到本项目的 `.agent/` 目录下：
 > `https://github.com/xlykyz/agent-rehydrate`
 
 完成后，继续按入口流程执行。
