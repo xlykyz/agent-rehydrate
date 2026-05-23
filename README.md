@@ -59,7 +59,6 @@ project-root/
 
 └── state/             # 唯一事实来源
     ├── _schema.md     # 状态目录结构与格式规范
-    ├── docs/          # 架构决策与设计文档
     ├── logs/          # 执行历史（发生了什么）
     ├── tasks/         # 当前工作状态（TODO / in-progress / done）
     ├── memory/        # 稳定、经过验证的事实性知识

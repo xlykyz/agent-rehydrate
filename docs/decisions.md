@@ -11,14 +11,14 @@
 - **理由**: 符合"状态层"的命名空间隔离设计，避免根目录污染。
 - **影响**: 所有引用状态文件的路径需更新为 /state/ 开头。
 
-## ADR-002: docs 归入 /state/ 统一管理
+## ADR-002: docs 移至项目根目录
 
-- **日期**: 2026-05-23
-- **状态**: Accepted（2026-05-23 更新）
-- **背景**: 原 spec 4.2 包含 /state/docs，4.3 又定义 /docs 为工作层，构成命名冲突。审计报告指出此问题。
-- **决策**: 所有状态文件统一放在 /state/ 下，docs 归入 state/docs/。不再分"状态层 docs"和"工作层 docs"。
-- **理由**: 消除命名冲突，简化结构，用户反馈三层架构过于复杂。
-- **影响**: 所有引用 docs 的路径改为 state/docs/。
+- **日期**: 2026-05-23（2026-05-19 更新）
+- **状态**: Accepted
+- **背景**: 原设计将 docs 归入 /state/，审计发现 state/docs 与根目录 /docs 存在命名冲突。后续重构确定 state 只存放 Agent 认知状态，docs 属项目文档而非 Agent 状态。
+- **决策**: 撤销 ADR-002 原决案。docs 移至项目根目录，不作为 state 子目录。state 缩减为 logs/ + wiki/（MVP 阶段）。
+- **理由**: docs 是面向人的项目文档，不属于 Agent 状态系统。state 聚焦 Agent 认知状态，职责更清晰。
+- **影响**: protocol/AGENT.md 已更新移除 state/docs 引用。project-root/docs/ 作为独立目录存在。
 
 ## ADR-003: tasks 使用单文件 status.md
 

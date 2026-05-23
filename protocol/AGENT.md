@@ -19,7 +19,6 @@
 - `state/tasks/` — 当前工作状态
 - `state/memory/` — 稳定事实
 - `state/wiki/` — 结构化知识
-- `state/docs/` — 架构决策与设计文档
 
 ---
 
@@ -38,7 +37,6 @@
 创建以下目录结构：
 
 ```
-state/docs/
 state/logs/
 state/tasks/
 state/memory/
@@ -97,9 +95,7 @@ state/wiki/
 - 概念模型、术语表、业务规则
 - 仅当结构化知识积累到可独立成文时才写入
 
-### 3.5 state/docs/
-- 架构决策与设计理由
-- 每个重要决策记录为 ADR（Architecture Decision Record）
+### ~~3.5 state/docs/~~ （已移除，docs 移至项目根目录）
 
 ---
 
@@ -114,7 +110,7 @@ state/wiki/
    - 经过至少 2 次任务验证
    - 可复用于当前任务之外的场景
 4. **更新 `state/wiki/`** — 仅当结构化知识出现
-5. **更新 `state/docs/`** — 仅当架构/设计发生变化
+5. **更新 `docs/`**（项目根目录） — 仅当架构/设计发生变化
 
 **禁止：**
 - ❌ 将 logs 当作 memory 使用
@@ -135,10 +131,7 @@ Step 1: 读取 state/tasks/status.md
 Step 2: 读取 state/memory/
         → 获取稳定、已验证的基础事实
 
-Step 3: 读取 state/docs/
-        → 理解系统架构与历史设计决策
-
-Step 4: 读取 state/wiki/
+Step 3: 读取 state/wiki/
         → 补充结构化概念与领域知识（必要时）
 ```
 

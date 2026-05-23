@@ -9,9 +9,6 @@
 ```
 state/
 ├── _schema.md          ← 本文档
-├── docs/               ← 架构决策与设计文档
-│   ├── decisions.md
-│   └── architecture.md
 ├── logs/               ← 执行历史
 │   └── development-log.md
 ├── tasks/              ← 当前工作状态
