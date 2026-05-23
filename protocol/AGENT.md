@@ -38,6 +38,7 @@
 创建以下目录结构：
 
 ```
+state/docs/
 state/logs/
 state/tasks/
 state/memory/

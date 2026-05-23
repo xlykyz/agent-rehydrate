@@ -57,15 +57,13 @@ project-root/
 ├── AGENT.md           # 行为规则与状态访问协议
 ├── README.md          # 项目说明
 
-├── state/             # 唯一事实来源
-│   ├── _schema.md     # 状态目录结构与格式规范
-│   ├── docs/          # 架构决策与设计文档
-│   ├── logs/          # 执行历史（发生了什么）
-│   ├── tasks/         # 当前工作状态（TODO / in-progress / done）
-│   ├── memory/        # 稳定、经过验证的事实性知识
-│   └── wiki/          # 结构化领域知识
-│
-└── code/              # 具体实现
+└── state/             # 唯一事实来源
+    ├── _schema.md     # 状态目录结构与格式规范
+    ├── docs/          # 架构决策与设计文档
+    ├── logs/          # 执行历史（发生了什么）
+    ├── tasks/         # 当前工作状态（TODO / in-progress / done）
+    ├── memory/        # 稳定、经过验证的事实性知识
+    └── wiki/          # 结构化领域知识
 ```
 
 ---
@@ -90,14 +88,14 @@ project-root/
 ```bash
 # 将 protocol 复制到新项目
 cp -r agent-rehydrate/protocol/AGENT.md my-new-project/
-mkdir -p my-new-project/state/{logs,tasks,memory,wiki}
+mkdir -p my-new-project/state/{docs,logs,tasks,memory,wiki}
 ```
 
 ### 已有项目
 
 ```bash
 # 引入状态层
-mkdir -p project/state/{logs,tasks,memory,wiki}
+mkdir -p project/state/{docs,logs,tasks,memory,wiki}
 cp agent-rehydrate/protocol/AGENT.md project/
 ```
 
