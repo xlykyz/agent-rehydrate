@@ -1,7 +1,7 @@
 # AGENTS.md v2.0 开发文档
 
 > 本文档记录 v2.0 协议的设计背景、架构决策与实现思考。
-> 协议文件本体请见 `AGENTS-v2.0.md`，各 skill 实现请见 `.agent/skills/`。
+> 协议文件本体请见 `AGENTS-v2.0.md`，各 skill 实现请见 `skills/`。
 
 ---
 
