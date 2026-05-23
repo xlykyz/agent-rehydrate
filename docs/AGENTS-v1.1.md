@@ -1,4 +1,4 @@
-# AGENT.md
+# AGENTS.md
 
 > 项目级状态重建协议 v1.0
 >
@@ -30,7 +30,7 @@
 
 - `state/` 目录不存在
 - `state/tasks/` 下没有任何 `.md` 文件
-- `AGENT.md` 不存在于项目根目录
+- `AGENTS.md` 不存在于项目根目录
 
 ### 初始化操作
 

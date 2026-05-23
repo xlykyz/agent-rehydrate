@@ -1,51 +1,62 @@
 # Agent Rehydrate
 
-> **项目级状态重建协议** — 让任何 AI Agent 进入项目时，都能快速恢复一致的认知状态。
+> **项目级状态重建协议 v2.0** — 让 AI Agent 进入项目时，快速恢复一致的认知状态。
 >
-> 🚀 **快速启动：** 无需从零创建 AGENT.md，`protocol/AGENT.md` 复制到新项目根目录即可，复制即用。
+> 🚀 **快速启动：** 复制 `protocol/AGENTS.md` 到新项目根目录，首次进入时 Agent 自动拉取 skill 体系，开箱即用。
 >
-> 💾 **长期记忆：** 构建 agent 专属长期项目记忆，沉淀到本地文件，开箱即可理解整个项目。
+> 💾 **长期记忆：** 通过 logs（执行历史）+ wiki（结构化知识）沉淀项目认知，Agent 每次进入都能恢复上下文。
 
 ---
 
-## 一句话定义
+## 核心哲学
 
-这是一个用于降低 AI 编程 Agent 在项目中 **"状态重建成本"（State Rehydration Cost）** 的项目级协议系统。
+本项目是**状态驱动**的。仓库（repo）是唯一可信的现实来源，所有认知从文件结构中恢复，不依赖模型的隐式记忆。
 
-它不是 Agent 系统，不是 prompt 工程，而是——让任何强 Agent 进入项目时，快速恢复一致认知与工作状态的**协议层**。
-
----
-
-## 核心痛点
-
-AI 在**单次任务执行**上是强的，但在**跨任务、跨时间的一致性**上是弱的。
-
-每一次调用 Agent，它都像是一个"刚进入项目的新开发者"，需要重新建立对项目的整体理解。这种不断"重新解释世界"的过程，构成了长期开发中最大的隐性成本——**状态重建成本**。
-
-本项目正是针对这一问题提出的结构化解决方案。
+**一致性不依赖"智能"，而依赖结构。**
 
 ---
 
 ## 系统架构
 
-### 核心闭环
+### 协议 + Skill 体系
 
-每个 Agent 只做三件事：
+AGENTS.md 是协议本体（~120 行），定义行为契约。操作细节封装在独立 skill 中，不嵌入协议文件。
 
 ```
-1. Rehydrate（恢复状态）
-   → 读取 AGENT.md（协议）
-   → 读取 state/（事实）
-   → 建立一致认知
+AGENTS.md（协议本体）
+  │
+  ├── 技能引导（首次自动克隆 skills/）
+  ├── 入口流程（rehydrate → init / 开工）
+  ├── 运行时约定（何时调 log / wiki）
+  └── 一致性约束
+               
+skills/（操作定义）
+  ├── rehydrate/  ← 入口：检查初始化 → 加载认知 → 分流
+  ├── init/       ← 建目录 → 复制模板 → 建初版 wiki → 写日志
+  ├── log/        ← 向 development-log.md 追加执行记录
+  └── wiki/       ← 维护 state/wiki/ 中的项目知识
+```
 
-2. Execute（执行任务）
-   → 完成当前任务
+### 工作流程
 
-3. Persist（写回状态）
-   → 更新 logs（发生了什么）
-   → 更新 tasks（状态变化）
-   → 更新 memory（稳定事实）
-   → 更新 wiki（结构化知识）
+```
+Agent 进入项目
+     │
+     ├── skills/ 不存在？→ 从 GitHub 自动克隆
+     │
+     ▼
+  加载 rehydrate skill
+     │
+     ├── 未初始化 → init（建 state/ + 写 wiki + 日志）
+     │
+     └── 已初始化 → 加载 wiki + logs → 恢复认知
+                           │
+                           ▼
+                         开工
+                           │
+                           ├── 有知识沉淀？→ wiki skill
+                           │
+                           └── 总是 → log skill（追加记录）
 ```
 
 ---
@@ -54,16 +65,54 @@ AI 在**单次任务执行**上是强的，但在**跨任务、跨时间的一�
 
 ```
 project-root/
-├── AGENT.md           # 行为规则与状态访问协议
-├── README.md          # 项目说明
+├── AGENTS.md           # 协议本体（复制即用）
+├── README.md
+├── skills/             # 操作定义（首次自动克隆）
+│   ├── rehydrate/
+│   ├── init/
+│   ├── log/
+│   └── wiki/
 
-└── state/             # 唯一事实来源
-    ├── _schema.md     # 状态目录结构与格式规范
-    ├── logs/          # 执行历史（发生了什么）
-    ├── tasks/         # 当前工作状态（TODO / in-progress / done）
-    ├── memory/        # 稳定、经过验证的事实性知识
-    └── wiki/          # 结构化领域知识
+└── state/              # 唯一事实来源
+    ├── _schema.md      # 状态目录结构与格式规范
+    ├── logs/           # 执行历史（客观、不可变）
+    └── wiki/           # 项目认知（结构化、稳定）
 ```
+
+---
+
+## v2.0 相比 v1.x 的变化
+
+| 维度 | v1.x | v2.0 |
+|------|------|------|
+| 协议本体 | 211 行，内嵌所有操作细节 | ~120 行，只留契约 + skill 引用 |
+| 操作逻辑 | 写在 AGENTS.md 里 | 封装为独立 skill |
+| state 结构 | logs / tasks / memory / wiki | logs + wiki（仅客观层） |
+| 入口流程 | 直接开始执行 | rehydrate 检查 → 分流 |
+| 使用方式 | 复制一个文件 | 复制 AGENTS.md → 自动拉 skills/ |
+
+---
+
+## 使用方式
+
+复制 `protocol/AGENTS.md` 到新项目根目录即可：
+
+```bash
+cp agent-rehydrate/protocol/AGENTS.md my-project/AGENTS.md
+```
+
+AI 工具对应的文件名：
+
+| 工具 | 文件名 |
+|------|--------|
+| Claude | `CLAUDE.md` |
+| Codex / OpenCode | `AGENTS.md` |
+| Cursor | `.cursor/rules/core.mdc` |
+| Trae | `user_rules.md`（全局规则）或设置 → 规则 |
+
+首次进入时，Agent 会自动检测 `skills/` 是否存在：
+- **有网** → 自动从 `github.com/xlykyz/agent-rehydrate` 克隆
+- **无网** → 显示提示信息，手动复制 `skills/` 目录即可
 
 ---
 
@@ -76,26 +125,6 @@ project-root/
 | 上下文临时生成 | 上下文可恢复 |
 | 行为模式 = 执行指令 | 行为模式 = 状态演化 |
 | 文档作用弱 | 文档是核心组成 |
-| 适用 feature 级修改 | 适用项目级开发 |
-
----
-
-## 使用方式
-
-将 `protocol/AGENT.md` 按使用的 AI 工具复制到对应位置并重命名即可：
-
-| 工具 | 文件名 |
-|---|---|
-| Claude | `CLAUDE.md` |
-| Codex / OpenCode | `AGENTS.md` |
-| Cursor | `.cursor/rules/core.mdc` |
-| Trae | `user_rules.md`（全局规则）或设置 → 规则 → 兼容协议 |
-
-```
-# 复制并按工具重命名：
-cp agent-rehydrate/protocol/AGENT.md my-project/CLAUDE.md           # Claude
-cp agent-rehydrate/protocol/AGENT.md my-project/AGENTS.md           # Codex / OpenCode
-```
 
 ---
 
@@ -103,9 +132,7 @@ cp agent-rehydrate/protocol/AGENT.md my-project/AGENTS.md           # Codex / Op
 
 本项目不是 AI 框架，不是自动化系统，也不是 prompt 集合。
 
-它的本质是一个**协议层设计**——定义的是"用于约束 AI Coding Agent 行为一致性的项目级状态协议"。
-
-它不试图改变 AI 的能力，而是改变 AI 进入项目时的**方式**。
+它的本质是一个**协议层设计**——定义的是"用于约束 AI Coding Agent 行为一致性的项目级状态协议"。它不试图改变 AI 的能力，而是改变 AI 进入项目时的**方式**。
 
 ---
 
