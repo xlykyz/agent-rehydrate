@@ -72,6 +72,26 @@ Agent 执行时直接复制这些文件到 `.agent/_state/`，**不要重新生�
 - [ ] `.agent/_state/logs/development-log.md`
 - [ ] `.agent/_state/wiki/`
 - [ ] `.agent/_state/wiki/_index.md`
+- [ ] `.agent/skills/`
+- [ ] `.agent/skills/rehydrate/SKILL.md`
+- [ ] `.agent/skills/init/SKILL.md`
+- [ ] `.agent/skills/log/SKILL.md`
+- [ ] `.agent/skills/wiki/SKILL.md`
+
+---
+
+## gitignore 配置
+
+确保 `.agent/skills/` 和 `.agent/_state/` 不被提交到版本控制：
+
+1. `.gitignore` 不存在 → 创建，写入：
+   ```
+   .agent/skills/
+   .agent/_state/
+   ```
+2. `.gitignore` 已存在 → 逐行检查，缺失的行追加到末尾
+
+**注意**：只加这两行，不要改动 `.gitignore` 中已有的内容。
 
 ---
 
