@@ -4,6 +4,10 @@
 
 ---
 
+> 🚀 **复制即用：** `protocol/AGENT.md` 复制到新项目根目录即可。
+
+---
+
 ## 一句话定义
 
 这是一个用于降低 AI 编程 Agent 在项目中 **"状态重建成本"（State Rehydration Cost）** 的项目级协议系统。
