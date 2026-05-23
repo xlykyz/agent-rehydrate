@@ -67,16 +67,14 @@ Agent 进入项目
 project-root/
 ├── AGENTS.md           # 协议本体（复制即用）
 ├── README.md
-└── .agent/             # agent 专属目录
-    ├── skills/         # 操作定义（首次自动克隆）
-    │   ├── rehydrate/
-    │   ├── init/
-    │   ├── log/
-    │   └── wiki/
-    └── _state/         # 唯一事实来源
-        ├── _schema.md  # 状态目录结构与格式规范
-        ├── logs/       # 执行历史（客观、不可变）
-        └── wiki/       # 项目认知（结构化、稳定）
+├── skills/             # 技能源码（分发源）
+│   ├── rehydrate/
+│   ├── init/
+│   ├── log/
+│   └── wiki/
+├── docs/               # 开发文档与审计
+└── protocol/
+    └── AGENTS.md       # 协议模板
 ```
 
 ---
