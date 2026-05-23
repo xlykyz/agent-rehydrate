@@ -83,7 +83,7 @@ project-root/
 
 ## 使用方式
 
-将 `protocol/AGENT.md` 复制到项目根目录，按使用的 AI 工具重命名：
+将 `protocol/AGENT.md` 按使用的 AI 工具复制到对应位置并重命名即可：
 
 | 工具 | 文件名 |
 |---|---|
