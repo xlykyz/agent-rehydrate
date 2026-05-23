@@ -9,6 +9,9 @@
 ```
 state/
 ├── _schema.md          ← 本文档
+├── docs/               ← 架构决策与设计文档
+│   ├── decisions.md
+│   └── architecture.md
 ├── logs/               ← 执行历史
 │   └── development-log.md
 ├── tasks/              ← 当前工作状态
@@ -130,3 +133,19 @@ state/
 - 每个文件覆盖一个独立主题
 - 内容应具备参考价值，而非临时笔记
 - `_index.md` 作为目录索引
+
+---
+
+## docs/
+
+**用途**：架构决策与设计文档。
+
+**格式**：
+- `decisions.md` — ADR 格式，每个决策独立条目
+- `architecture.md` — 架构说明
+- `audits/` — 第三方审计报告归档
+
+**规则**：
+- 每个重要决策记录为 ADR（日期/背景/决策/理由/影响）
+- 不存放代码文档（归 code/）
+- 不存放临时笔记（归 logs/）

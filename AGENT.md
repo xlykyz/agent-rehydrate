@@ -11,37 +11,35 @@
 ```
 agent-rehydrate/
 ├── AGENT.md              ← 本文档（本项目的操作规则）
-├── README.md             ← 设计宣言/项目说明
+├── README.md             ← 项目说明
 │
 ├── protocol/
 │   └── AGENT.md          ← 核心产物：可复用于任何项目的协议模板
 │
 ├── state/                ← 状态层（本项目的演化记录）
 │   ├── _schema.md        ← 状态目录格式规范
+│   ├── docs/             ← 架构决策与审计归档
 │   ├── logs/
 │   ├── tasks/
 │   ├── memory/
 │   └── wiki/
 │
-└── docs/
-    ├── audits/           ← 审计报告归档
-    ├── decisions.md
-    └── architecture.md
+└── .gitignore
 ```
 
 ---
 
 ## 1. 核心工作流
 
-### 读取顺序（Rehydration）
+### 读取顺序
 
 ```
 1. state/tasks/status.md    → 当前进度
 2. state/memory/            → 稳定事实
-3. docs/                    → 架构决策
+3. state/docs/              → 架构决策
 ```
 
-### 写回规则（Persist）
+### 写回规则
 
 每次修改后：
 - 更新 `state/logs/development-log.md`
@@ -55,7 +53,7 @@ agent-rehydrate/
 ### protocol/AGENT.md 的迭代
 
 - 这是本仓库的核心产物
-- 协议版本变更必须记录在 `docs/decisions.md`
+- 协议版本变更必须记录在 `state/docs/decisions.md`
 - 每次发布新版本前，运行以下验证：
   - 与 `state/_schema.md` 定义的格式一致
   - 涵盖全部 9 节内容
