@@ -88,9 +88,9 @@ project-root/
 | 工具 | 文件名 |
 |---|---|
 | Claude Code | `CLAUDE.md` |
-| Codex / 通用 | `AGENT.md` |
-| Cursor | 按工具规则命名 |
-| Trae | 按工具规则命名 |
+| Codex CLI | 待确认 |
+| Cursor | 待确认 |
+| Trae | 待确认 |
 
 ```
 cp agent-rehydrate/protocol/AGENT.md my-project/CLAUDE.md
