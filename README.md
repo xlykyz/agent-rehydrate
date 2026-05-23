@@ -87,13 +87,15 @@ project-root/
 
 | 工具 | 文件名 |
 |---|---|
-| Claude Code | `CLAUDE.md` |
-| Codex CLI | 待确认 |
-| Cursor | 待确认 |
-| Trae | 待确认 |
+| Claude | `CLAUDE.md` |
+| Codex / OpenCode | `AGENTS.md` |
+| Cursor | `.cursor/rules/core.mdc` |
+| Trae | `user_rules.md`（全局规则）或设置 → 规则 → 兼容协议 |
 
 ```
-cp agent-rehydrate/protocol/AGENT.md my-project/CLAUDE.md
+# 复制并按工具重命名：
+cp agent-rehydrate/protocol/AGENT.md my-project/CLAUDE.md           # Claude
+cp agent-rehydrate/protocol/AGENT.md my-project/AGENTS.md           # Codex / OpenCode
 ```
 
 ---
