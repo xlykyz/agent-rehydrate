@@ -53,15 +53,14 @@ skills 位于：
 
 若 `.agent/skills/` 不存在：
 
-1. 从官方仓库获取 skill 体系
-2. 放入 `.agent/` 目录
-3. 加载失败则停止执行
+1. 从官方仓库克隆技能体系：
+   ```
+   git clone --depth 1 https://github.com/xlykyz/agent-rehydrate.git .agent-tmp && cp -r .agent-tmp/skills/ .agent/ && rm -rf .agent-tmp
+   ```
+2. 若上一步失败，手动将仓库中的 `skills/` 目录复制到本项目的 `.agent/` 目录
+3. 技能缺失时停止执行
 
-仓库：
-
-```
-https://github.com/xlykyz/agent-rehydrate
-```
+仓库地址：`https://github.com/xlykyz/agent-rehydrate`
 
 ---
 
