@@ -83,20 +83,17 @@ project-root/
 
 ## 使用方式
 
-### 新项目
+将 `protocol/AGENT.md` 复制到项目根目录，按使用的 AI 工具重命名：
 
-```bash
-# 将 protocol 复制到新项目
-cp -r agent-rehydrate/protocol/AGENT.md my-new-project/
-mkdir -p my-new-project/state/{docs,logs,tasks,memory,wiki}
+| 工具 | 文件名 |
+|---|---|
+| Claude Code | `CLAUDE.md` |
+| Codex / 通用 | `AGENT.md` |
+| Cursor | 按工具规则命名 |
+| Trae | 按工具规则命名 |
+
 ```
-
-### 已有项目
-
-```bash
-# 引入状态层
-mkdir -p project/state/{docs,logs,tasks,memory,wiki}
-cp agent-rehydrate/protocol/AGENT.md project/
+cp agent-rehydrate/protocol/AGENT.md my-project/CLAUDE.md
 ```
 
 ---
