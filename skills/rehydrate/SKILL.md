@@ -23,8 +23,9 @@
 按以下顺序读取：
 
 1. **`.agent/_state/wiki/_index.md`** — 了解项目有哪些知识沉淀
-2. **按需读取 wiki 文件** — 恢复对项目的理解
-3. **`.agent/_state/logs/development-log.md`** — 了解最近的执行历史
+2. **必读**：项目概述、框架、架构等基本信息类 wiki
+3. **按需读取**：其余 wiki 文件
+4. **`.agent/_state/logs/development-log.md`** — 了解最近的执行历史
 
 ### 3. 进入工作状态
 
