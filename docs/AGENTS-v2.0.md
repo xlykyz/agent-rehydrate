@@ -55,9 +55,9 @@ skills 位于：
 
 1. 从官方仓库克隆技能体系：
    ```
-   git clone --depth 1 https://github.com/xlykyz/agent-rehydrate.git .agent-tmp && cp -r .agent-tmp/skills/ .agent/ && rm -rf .agent-tmp
+   git clone --depth 1 https://github.com/xlykyz/agent-rehydrate.git .agent/.agent-tmp && cp -r .agent/.agent-tmp/skills/ .agent/ && rm -rf .agent/.agent-tmp
    ```
-2. 若上一步失败，手动将仓库中的 `skills/` 目录复制到本项目的 `.agent/` 目录
+2. 若上一步失败，手动将仓库中的 `skills/` 目录复制到本项目的 `.agent/skills/`
 3. 技能缺失时停止执行
 
 仓库地址：`https://github.com/xlykyz/agent-rehydrate`
