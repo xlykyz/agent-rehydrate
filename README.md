@@ -108,9 +108,7 @@ AI 工具对应的文件名：
 | Cursor | `.cursor/rules/core.mdc` |
 | Trae | `user_rules.md`（全局规则）或设置 → 规则 |
 
-首次进入时，Agent 会自动检测 `.agent/skills/` 是否存在：
-- **有网** → 自动从 `github.com/xlykyz/agent-rehydrate` 克隆
-- **无网** → 显示提示信息，手动复制 `.agent/skills/` 目录即可
+首次进入时，Agent 会自动检测 `.agent/skills/` 是否存在，若不存在则从官方仓库拉取技能体系。拉取失败时停止执行，不自动降级。
 
 ---
 
